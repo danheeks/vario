@@ -37,14 +37,13 @@ void setup() {
     old_total[i] = total;
   }
 
-  for(int i = 1200; i<1800; i+=2){ toneAC(i, 2); delay(1); }
-  for(int i = 1800; i>1720; i-=2){ toneAC(i, 2); delay(1); }
-  for(int i = 1720; i<1800; i+=2){ toneAC(i, 2); delay(1); }
-  for(int i = 1800; i>1720; i-=2){ toneAC(i, 2); delay(1); }
-  for(int i = 1720; i<1800; i+=2){ toneAC(i, 2); delay(1); }
-  for(int i = 1800; i>1720; i-=2){ toneAC(i, 2); delay(1); }
-  for(int i = 1720; i<1800; i+=2){ toneAC(i, 2); delay(1); }
-  toneAC(0); // Turn off toneAC, can also use noToneAC().
+// play start sound
+  toneAC(388, 4);
+  delay(70);
+  toneAC(0);
+  delay(30);
+  toneAC(590, 4);
+  delay(70);
 }
 
 void loop(){
