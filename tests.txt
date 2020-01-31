@@ -1,0 +1,8 @@
+22-01-2020 Current draw 11.8mA
+remove Serial calls
+Current draw 11.7mA
+removed the power led
+current draw 9.8mA
+
+added code: LowPower.powerDown(SLEEP_FOREVER, ADC_OFF, BOD_OFF);
+current draw 1.4mA ( useless though :) )

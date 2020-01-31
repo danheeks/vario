@@ -23,9 +23,14 @@ int current_tone = 0;
 int beep_time = 0;
 
 void setup() {
-  Serial.begin(9600);
+// play start sound
+  toneAC(388, 4);
+  delay(70);
+  toneAC(0);
+  delay(30);
+  toneAC(590, 4);
+  delay(70);
   mySensor.begin();
-  Serial.println("sensor initialized");
   uint32_t p = mySensor.readPressure();
   total = p*NUM_PRESSURES;
   for(int i = 0; i<NUM_PRESSURES; i++)
@@ -36,14 +41,7 @@ void setup() {
   {
     old_total[i] = total;
   }
-
-// play start sound
-  toneAC(388, 4);
-  delay(70);
   toneAC(0);
-  delay(30);
-  toneAC(590, 4);
-  delay(70);
 }
 
 void loop(){
@@ -54,12 +52,6 @@ void loop(){
     float frate = (float)rate;
     frate = 0.0;
     old_total[total_index] = total;
-    if((pressure_index & 0x7) == 0)
-    {
-      Serial.print(rate);
-      Serial.print(" ");
-      Serial.println(total);
-    }
     pressure_index++;
     total_index++;
     if(pressure_index >= NUM_PRESSURES)pressure_index = 0;
