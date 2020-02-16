@@ -10,6 +10,9 @@ Hardware connections:
 + (VDD) to 3.3V
 SCL to A5
 SDA to A4
+
+D9 and D10 to the Piezo Buzzer ( see toneAC.h )
+
 */
 
 #define NUM_PRESSURES 64
