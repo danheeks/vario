@@ -34,7 +34,7 @@ void setup()
   delay(70);
   toneAC(0);
   delay(30);
-  toneAC(290, 4);
+  toneAC(450, 4);
   delay(70);
   toneAC(0);
 
@@ -69,13 +69,13 @@ void loop()
     if(total_index >= NUM_TOTALS)total_index = 0;
     if(rate < -15){
       if(beep_time <3)
-        toneAC(500 - rate*2);
+        toneAC(500 - rate*5);
       else
         toneAC(0);
     }
     else if(rate > 30)
     {
-      toneAC(300);
+      toneAC(300 - rate * 5);
     }
     else
     {
