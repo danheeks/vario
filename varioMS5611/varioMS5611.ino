@@ -73,9 +73,11 @@ void loop()
       else
         toneAC(0);
     }
-    else if(rate > 30)
+    else if(rate > 60)
     {
-      toneAC(300 - rate * 5);
+      unsigned long tone = 500 - rate * 4;
+      if(tone < 70)tone = 70;
+      toneAC(tone);
     }
     else
     {
