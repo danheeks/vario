@@ -18,5 +18,5 @@ I also made one with BMP280. This works so well that I can leave the sensor to d
 The reponse time is quicker than the one with the BMP180  
   
 ![Schematic Picture](./varios.jpg)
-![Schematic Picture](./varios open.jpg)
+![Schematic Picture](./"varios open.jpg")
 
