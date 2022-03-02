@@ -21,7 +21,7 @@ float old_pressure = 0;
 
 void setup() {
 // play start sound
-  Serial.begin(9600);
+//  Serial.begin(9600);
    toneAC(388, 5);
   delay(70);
   unsigned status;
@@ -60,8 +60,8 @@ void loop(){
   float rate = (new_pressure - old_pressure) * 1000.0;
   old_pressure = new_pressure;
   
-  Serial.print(F("rate = "));
-  Serial.println(rate);
+  //Serial.print(F("rate = "));
+  //Serial.println(rate);
 
   if(rate<-8)
   {
