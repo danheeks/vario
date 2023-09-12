@@ -16,7 +16,7 @@ putting it in a metal tin seems to cut out the RF interference.
 I made one with BMP280.<br />
 This works so well that I can leave the sensor to do the averaging and let the arduino sleep in between.<br />
 The reponse time is quicker than the one with the BMP180.<br />
-Instructions here https://github.com/danheeks/vario/tree/master/bmp280piezo 
+Instructions here https://github.com/danheeks/vario/tree/master/bmp280piezo <br />
 One battery lasted me two summers of amateur paragliding including a flight of 202km in the UK! <br />
 https://youtu.be/KGif6ZkmjKs?t=256  
 
