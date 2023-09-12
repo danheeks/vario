@@ -21,6 +21,7 @@ Wiring.
 - Arduino GND to battery -
 
 I measured 10mA standby current, so should theoretically last 55 hours.
-( it actually lasted about 2 summers of paragliding, maybe 40hrs? )
+One battery lasted me two summers of amateur paragliding, maybe 50hrs, including a flight of 202km in the UK! <br />
+https://youtu.be/KGif6ZkmjKs?t=256  
 
 ![Schematic Picture](./schematic.svg)
