@@ -1,0 +1,7 @@
+PCB ordered 8th Dec 2023
+  Pads for resistors and capacitors were wrongly specified as "0201_0603Metric", when they should have been "0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+    ( the footprint had "0603" in the title, which is what I was looking for. I hadn't realized that the first number is inch, the second is mm )
+  I had wrongly connected A4 ( SDA ) on Nano to SDO on BMP280. It should have been connected to SDI on BMP280.
+  Likewise SDI was wrongly connected to a pull down to GND, but it should have been SDO getting pulled down to GND.
+  I had connected a capacitor between A4 on Nano and GND, but it should have been connected between V3.3 and GND somewhere near the BMP280.
+  I'd like to convert the footpring for the BMP280 to a hand solder footpring.
