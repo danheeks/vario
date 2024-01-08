@@ -6,4 +6,8 @@ PCB ordered 8th Dec 2023
   I had connected a capacitor between A4 on Nano and GND, but it should have been connected between V3.3 and GND somewhere near the BMP280.
   I'd like to convert the footprint for the BMP280 to a hand solder footprint.
   The sensor was working, but the pressure change seemed a bit rubbish; I had to ascend the stairs at a run to get beeping. Damaged by the hot air gun or the flux maybe?
+
+
+PCB ordered 25th Dec 2023
+   Assembled it 8th Jan 2024. Not working yet.
   
