@@ -881,7 +881,7 @@
     (property "Value" "BMP280" (at 194.31 105.41 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Dans_Footprints:BMP280 handsolder" (at 187.96 123.19 0)
+    (property "Footprint" "Package_LGA:Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering" (at 187.96 123.19 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://ae-bst.resource.bosch.com/media/_tech/media/datasheets/BST-BMP280-DS001.pdf" (at 187.96 105.41 0)
