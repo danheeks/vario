@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "attiny88-a")(type "KiCad")(uri "C:/Users/Admin/Downloads/attiny88-a.kicad_sym")(options "")(descr ""))
+  (lib (name "Project Library")(type "KiCad")(uri "${KIPRJMOD}/Project Library.kicad_sym")(options "")(descr ""))
+)

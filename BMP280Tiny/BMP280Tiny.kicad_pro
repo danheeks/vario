@@ -236,7 +236,9 @@
   },
   "libraries": {
     "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "Project Library"
+    ]
   },
   "meta": {
     "filename": "BMP280Tiny.kicad_pro",
