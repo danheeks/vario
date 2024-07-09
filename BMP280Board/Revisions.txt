@@ -8,6 +8,19 @@ PCB ordered 8th Dec 2023
   The sensor was working, but the pressure change seemed a bit rubbish; I had to ascend the stairs at a run to get beeping. Damaged by the hot air gun or the flux maybe?
 
 
-PCB ordered 25th Dec 2023
+v2 PCB ordered 25th Dec 2023
    Assembled it 8th Jan 2024. Not working yet.
+
+v3 
+  Changed back to original sensor footprint, but had wrong wiring of sensor
+
+v4 PCB orodered 27th Jan 2024
+  I got one working and made a working vario. :) 
+  Only of one the four boards that I made worked, though :(
+
+v5
+  switch to Attiny85
+
+
+
   
