@@ -1,0 +1,45 @@
+Wiring :
+
+six pins on vario ( with pins in top right corner of board )
+
+1 MISO  -   VCC 2
+3 SCK   -  MOSI 4
+5 RESET -   GND 6
+
+
+Uno to Vario
+10 (SS) 1 (RESET)
+11 (MOSI) 17 (MOSI)
+12 (MISO) 18 (MISO)
+13 (SCK) 19 (SCK)
+3.3V 20 (VACC) and 7 (VCC)
+GND 22 (GND)
+
+
+
+I was using Arduino IDE 2.1.0
+
+Add http://drazzy.com/package_drazzy.com_index.json to 
+File->Preferences->Additional boards manager URL
+( add a comma if something already there )
+
+Select "ATTinyCore by Spence Konde" and click "Install"
+
+Load ArduinoISP sketch from Files->examples->ArduinoISP ( upload onto Uno )
+
+
+
+    Select Tools->Board->Attiny48/88. After this, the "Tools" menus should show the following for the board. Make clock, "B.O.D." and other selections as appropriate:
+
+Board: "ATtiny48/88"
+Chip: ATtiny88
+Clock: "8MHz (internal)"
+Save EEPRO: "EEPROM retained"
+LTO: "Disabled"
+B.O.D. Level: "B.O.D. Disabled"
+
+    Select Tools->Programmer->"Arduino as ISP". The "Tools" menu should then show the following:
+
+Programmer: "Arduino as ISP"
+
+    Now upload your sketch for ATT88 as usual.
