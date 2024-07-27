@@ -23,6 +23,11 @@
 */
 #include <Wire.h>
 #include <Adafruit_I2CDevice.h>
+#include <toneAC.h>
+
+#define VOLUME 1
+// #define USE_CALIBRATION
+#define USE_TONE
 
 /*!
  * Registers available on the sensor.
@@ -144,6 +149,7 @@ enum {
     unsigned int get() { return (osrs_t << 5) | (osrs_p << 2) | mode; }
   };
 
+#ifdef USE_CALIBRATION
 typedef struct {
   uint16_t dig_T1; /**< dig_T1 cal register. */
   int16_t dig_T2;  /**<  dig_T2 cal register. */
@@ -159,17 +165,22 @@ typedef struct {
   int16_t dig_P8;  /**< dig_P8 cal register. */
   int16_t dig_P9;  /**< dig_P9 cal register. */
 } bmp280_calib_data;
+#endif
 
 //Adafruit_BMP280 bmp; // use I2C interface
 //Adafruit_Sensor *bmp_pressure = bmp.getPressureSensor();
 Adafruit_I2CDevice *i2c_dev = NULL;
 int led_delay = 1000;
 int32_t _sensorID = 0;
+#ifdef USE_CALIBRATION
   int32_t t_fine;
   bmp280_calib_data _bmp280_calib;
+  int64_t prev_p = 0;
+#else
+  int32_t prev_p = 0;
+#endif
   config _configReg;
   ctrl_meas _measReg;
-  int64_t prev_p = 0;
 
 uint8_t read8(byte reg) {
   uint8_t buffer[1];
@@ -194,7 +205,7 @@ uint32_t read24(byte reg) {
   return uint32_t(buffer[0]) << 16 | uint32_t(buffer[1]) << 8 |
          uint32_t(buffer[2]);
 }
-
+#ifdef USE_CALIBRATION
 uint16_t read16(byte reg) {
   uint8_t buffer[2];
 
@@ -227,6 +238,7 @@ void readCoefficients() {
   _bmp280_calib.dig_P8 = readS16_LE(BMP280_REGISTER_DIG_P8);
   _bmp280_calib.dig_P9 = readS16_LE(BMP280_REGISTER_DIG_P9);
 }
+#endif
 
 void setSampling()
 {
@@ -237,7 +249,7 @@ void setSampling()
   _measReg.osrs_p = SAMPLING_X16;
 
   _configReg.filter = FILTER_X16;
-  _configReg.t_sb = STANDBY_MS_1;
+  _configReg.t_sb = STANDBY_MS_63;
 
   write8(BMP280_REGISTER_CONFIG, _configReg.get());
   write8(BMP280_REGISTER_CONTROL, _measReg.get());
@@ -245,7 +257,15 @@ void setSampling()
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-
+#ifdef USE_TONE
+   toneAC(388, 4);
+  delay(70);
+  toneAC(590, 4);
+  delay(70);
+  toneAC();
+#endif
+  delay(3000); // wait for sensor to settle
+ 
 i2c_dev = new Adafruit_I2CDevice(0x76, &Wire);
 if (i2c_dev->begin())
 {
@@ -263,7 +283,10 @@ else
   // to do, play error tune
   return;
 }
+#ifdef USE_CALIBRATION
   readCoefficients();
+#endif
+
   setSampling();
   delay(100);
 
@@ -272,6 +295,7 @@ else
   pinMode(PIN_PB0, OUTPUT);
 }
 
+#ifdef USE_CALIBRATION
 float readTemperature() {
   int32_t var1, var2;
 
@@ -323,6 +347,7 @@ int64_t readPressure() {
   p = ((p + var1 + var2) >> 8) + (((int64_t)_bmp280_calib.dig_P7) << 4);
   return p;
 }
+#endif
 
 // the loop function runs over and over again forever
 void loop() {
@@ -332,11 +357,46 @@ void loop() {
     return;
   }
 
+#ifdef USE_CALIBRATION
   int64_t p = readPressure();
-
   if((p - prev_p) < -150)
     digitalWrite(PIN_PB0, HIGH);  // turn the LED on (HIGH is the voltage level)
   else
     digitalWrite(PIN_PB0, LOW);   // turn the LED off by making the voltage LOW
+#else
+  int32_t p = read24(BMP280_REGISTER_PRESSUREDATA);
+  int32_t rate = prev_p - p;
+  if(rate < -90)
+  {
+  int16_t pitch = 500 - rate;
+  if(pitch > 2000)pitch = 2000;
+#ifdef USE_TONE
+  toneAC(pitch, VOLUME);
+#endif
+//  LowPower.idle(SLEEP_120MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
+    delay(120);
+#ifdef USE_TONE
+  toneAC(0);
+#endif
+//  LowPower.idle(SLEEP_120MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
+    delay(120);
+  }
+  else if(rate>360)
+  {
+  #ifdef USE_TONE
+    toneAC(300, 1);
+  #endif
+//    LowPower.idle(SLEEP_250MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
+    delay(250);
+  }
+  else
+  {
+#ifdef USE_TONE
+    toneAC(0);
+#endif
+    //LowPower.idle(SLEEP_250MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
+    delay(250);
+  }
+  #endif
   prev_p = p;
 }
