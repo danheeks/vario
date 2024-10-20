@@ -25,9 +25,11 @@
 #include <Adafruit_I2CDevice.h>
 #include <toneAC.h>
 
-#define VOLUME 1
-// #define USE_CALIBRATION
+#define VOLUME 10
+// I can't get sketch to fit on ATTINY88 with calibration
+//#define USE_CALIBRATION
 #define USE_TONE
+#define USE_CHIP_ID_CHECK
 
 /*!
  * Registers available on the sensor.
@@ -170,12 +172,13 @@ typedef struct {
 //Adafruit_BMP280 bmp; // use I2C interface
 //Adafruit_Sensor *bmp_pressure = bmp.getPressureSensor();
 Adafruit_I2CDevice *i2c_dev = NULL;
-int led_delay = 1000;
+#ifdef USE_CHIP_ID_CHECK
 int32_t _sensorID = 0;
+#endif
 #ifdef USE_CALIBRATION
   int32_t t_fine;
   bmp280_calib_data _bmp280_calib;
-  int64_t prev_p = 0;
+  float prev_p = 0;
 #else
   int32_t prev_p = 0;
 #endif
@@ -242,10 +245,12 @@ void readCoefficients() {
 
 void setSampling()
 {
+#ifdef USE_CHIP_ID_CHECK
   if (!_sensorID)
     return; // begin() not called yet
+#endif
   _measReg.mode = MODE_NORMAL;
-  _measReg.osrs_t = SAMPLING_X16;
+  _measReg.osrs_t = SAMPLING_X2;
   _measReg.osrs_p = SAMPLING_X16;
 
   _configReg.filter = FILTER_X16;
@@ -267,22 +272,21 @@ void setup() {
   delay(3000); // wait for sensor to settle
  
 i2c_dev = new Adafruit_I2CDevice(0x76, &Wire);
+#ifdef USE_CHIP_ID_CHECK
 if (i2c_dev->begin())
 {
   delay(100);
   _sensorID = read8(BMP280_REGISTER_CHIPID);
 }
 
-if(_sensorID == 0x58)
-{
-// success
-  led_delay = 100; 
-}
-else
+if(_sensorID != 0x58)
 {
   // to do, play error tune
   return;
 }
+#else
+i2c_dev->begin();
+#endif
 #ifdef USE_CALIBRATION
   readCoefficients();
 #endif
@@ -318,7 +322,7 @@ float readTemperature() {
   return T / 100;
 }
 
-int64_t readPressure() {
+float readPressure() {
   int64_t var1, var2, p;
 
   // Must be done first to get the t_fine variable set up
@@ -345,33 +349,36 @@ int64_t readPressure() {
   var2 = (((int64_t)_bmp280_calib.dig_P8) * p) >> 19;
 
   p = ((p + var1 + var2) >> 8) + (((int64_t)_bmp280_calib.dig_P7) << 4);
-  return p;
+  return (float)p / 256;
 }
 #endif
 
 // the loop function runs over and over again forever
 void loop() {
+#ifdef USE_CHIP_ID_CHECK
   if(_sensorID != 0x58)
   {
     // setup failed
     return;
   }
+#endif
 
 #ifdef USE_CALIBRATION
-  int64_t p = readPressure();
-  if((p - prev_p) < -150)
-    digitalWrite(PIN_PB0, HIGH);  // turn the LED on (HIGH is the voltage level)
-  else
-    digitalWrite(PIN_PB0, LOW);   // turn the LED off by making the voltage LOW
+  float p = readPressure();
+  float rate = (p - prev_p) * 1000.0;
+  prev_p = p;
 #else
   int32_t p = read24(BMP280_REGISTER_PRESSUREDATA);
+  p >>= 4;
   int32_t rate = prev_p - p;
-  if(rate < -90)
+  prev_p = p;
+#endif
+  if(rate < -10)
   {
-  int16_t pitch = 500 - rate;
+  float pitch = 500.0 - (rate * 10.0);
   if(pitch > 2000)pitch = 2000;
 #ifdef USE_TONE
-  toneAC(pitch, VOLUME);
+  toneAC((float)pitch, VOLUME);
 #endif
 //  LowPower.idle(SLEEP_120MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
     delay(120);
@@ -381,8 +388,13 @@ void loop() {
 //  LowPower.idle(SLEEP_120MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
     delay(120);
   }
-  else if(rate>360)
+#ifdef USE_CALIBRATION
+  else if(rate>30)
   {
+#else
+  else if(rate>300)
+  {
+#endif
   #ifdef USE_TONE
     toneAC(300, 1);
   #endif
@@ -397,6 +409,4 @@ void loop() {
     //LowPower.idle(SLEEP_250MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
     delay(250);
   }
-  #endif
-  prev_p = p;
 }
