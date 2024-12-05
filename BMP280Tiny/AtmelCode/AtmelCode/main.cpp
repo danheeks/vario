@@ -1,6 +1,8 @@
 // main.cpp Dan Heeks 20th October 2024
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <avr/sleep.h>
+#include <avr/wdt.h>
 
 // PIEZO_PINA PB1
 // PIEZO_PINB PB2
@@ -10,11 +12,11 @@
 #define CLR_PIEZ0_A PORTB &= 0xfd;
 #define CLR_PIEZ0_B PORTB &= 0xfb;
 
-int delay_a = 0;
 #define F_CPU 8000000UL  // Set clock frequency to 8 MHz
 
 #define BMP_280_ADDR 0x76
 
+int delay_a = 0;
 void delay(uint16_t ms)
 {
 	uint32_t i;
@@ -25,6 +27,47 @@ void delay(uint16_t ms)
 	{
 		delay_a = 1;
 	}
+}
+
+volatile uint16_t remaining_ms = 0;  // Variable to track the remaining delay time
+
+// Watchdog Interrupt Service Routine (ISR)
+ISR(WDT_vect) {
+	if (remaining_ms >= 16) {
+		remaining_ms -= 16;  // Decrease remaining time by 16 ms (WDT interval)
+		} else {
+		remaining_ms = 0;    // Ensure it doesn't go below zero
+	}
+}
+
+void delay_ms(uint16_t ms) {
+    remaining_ms = ms;
+
+    // Set up the Watchdog Timer for 16 ms interrupts
+    cli();  // Disable interrupts while configuring the WDT
+
+    // Enable change of WDT settings
+    wdt_reset();  // Reset the WDT
+    MCUSR &= ~(1 << WDRF);  // Clear WDT reset flag
+    WDTCSR |= (1 << WDCE) | (1 << WDE);  // Enable timed sequence for changing WDT settings
+
+    // Set WDT to interrupt mode only, with the 16 ms timeout
+    WDTCSR = (1 << WDIE);  // Set WDP0 = 0 (default), enabling the 16 ms timeout, enable WDT interrupt
+
+    sei();  // Re-enable global interrupts
+
+    // Enter low-power mode and wait for the delay to finish
+    while (remaining_ms > 0) {
+	    set_sleep_mode(SLEEP_MODE_IDLE);  // Power-down mode
+	    sleep_mode();  // Go to sleep until WDT interrupt occurs
+    }
+
+    // Disable the Watchdog Timer after the delay is finished
+    cli();
+    wdt_reset();  // Reset the WDT again
+    WDTCSR |= (1 << WDCE) | (1 << WDE);  // Enter WDT configuration mode
+    WDTCSR = 0x00;  // Disable the WDT
+    sei();  // Re-enable global interrupts
 }
 
 void led1_on()
@@ -623,6 +666,7 @@ int main(void)
     sei();
 	
 	beep(388, 70);
+	delay_ms(1000);
 	beep(590, 70);
 
 	delay(500); // wait for sensor to settle
@@ -660,19 +704,19 @@ int main(void)
 			float pitch = 500.0 - (rate * 10.0);
 			if(pitch > 2000)pitch = 2000;
 			toneAC((float)pitch);
-			delay(120);
+			delay_ms(120);
 			stop_tone();
-			delay(120);
+			delay_ms(120);
 		}
 		else if(rate>30)
 		{
 			toneAC(300);
-			delay(250);
+			delay_ms(250);
 		}
 		else
 		{
 			stop_tone();
-			delay(250);
+			delay_ms(250);
 		}		
 	}
 }
