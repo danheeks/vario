@@ -2,4 +2,5 @@
   (version 7)
   (lib (name "BMP280Board")(type "KiCad")(uri "C:/Dev/vario/BMP280Board.pretty")(options "")(descr ""))
   (lib (name "Vario")(type "KiCad")(uri "${KIPRJMOD}/Vario.pretty")(options "")(descr ""))
+  (lib (name "Library")(type "KiCad")(uri "${KIPRJMOD}/Library.pretty")(options "")(descr ""))
 )
