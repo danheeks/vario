@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<HeeksCAD_Document>
+    <Program machine="Tangent Knife" output_file="C:\Users\tom\AppData\Local\Temp\hee7A44.tmp.ngc" output_file_name_follows_data_file_name="1" program="" units="1.00000000" ProgramPathControlMode="3" ProgramMotionBlendingTolerance="0.00010000" ProgramNaiveCamTolerance="0.00010000" title_from_id="1" id="1">
+        <Tools>
+            <Tool title="3 mm Slot Cutter" tool_number="1" id="5">
+                <params diameter="3.00000000" tool_length_offset="127.00000000" automatically_generate_title="1" material="1" type="slot_cutter" corner_radius="0.00000000" flat_radius="0.00000000" cutting_edge_angle="0.00000000" cutting_edge_height="12.00000000" />
+            </Tool>
+            <Tool title="4 mm Drill Bit" tool_number="2" id="6">
+                <params diameter="4.00000000" tool_length_offset="100.00000000" automatically_generate_title="1" material="1" type="drill" corner_radius="0.00000000" flat_radius="0.00000000" cutting_edge_angle="59.00000000" cutting_edge_height="50.80000000" />
+            </Tool>
+            <Tool title="6 mm Slot Cutter" tool_number="3" id="7">
+                <params diameter="6.00000000" tool_length_offset="100.00000000" automatically_generate_title="1" material="1" type="slot_cutter" corner_radius="0.00000000" flat_radius="0.00000000" cutting_edge_angle="0.00000000" cutting_edge_height="30.00000000" />
+            </Tool>
+        </Tools>
+        <Patterns />
+        <Surfaces />
+        <Stocks />
+        <Operations />
+        <nccode edited="0" id="1" />
+    </Program>
+    <Sketch title="Sketch" title_from_id="1" id="1">
+        <Line col="0" sx="34.05743107" sy="28.00405405" sz="0.00000000" ex="-32.99189213" ey="28.00000000" ez="0.00000000" id="1" />
+        <Arc cx="-32.99104459" cy="13.98267880" cz="0.00000000" ax="0.00000000" ay="0.00000000" az="1.00000000" col="0" sx="-32.99189213" sy="28.00000000" sz="0.00000000" ex="-47.00000000" ey="14.46689212" ez="0.00000000" id="2" />
+        <Line col="0" sx="-47.00000000" sy="14.46689212" sz="0.00000000" ex="-47.09864865" ey="-18.41621544" ez="0.00000000" id="5" />
+        <Arc cx="-33.55824926" cy="-18.45683636" cz="0.00000000" ax="0.00000000" ay="0.00000000" az="1.00000000" col="0" sx="-47.09864865" sy="-18.41621544" sz="0.00000000" ex="-33.56148672" ey="-31.99729629" ez="0.00000000" id="6" />
+        <Line col="0" sx="-33.56148672" sy="-31.99729629" sz="0.00000000" ex="33.91486350" ey="-31.99729629" ez="0.00000000" id="7" />
+        <Arc cx="33.91486350" cy="-18.37771327" cz="0.00000000" ax="0.00000000" ay="0.00000000" az="1.00000000" col="0" sx="33.91486350" sy="-31.99729629" sz="0.00000000" ex="47.48580922" ey="-19.52770190" ez="0.00000000" id="8" />
+        <Line col="0" sx="47.48580922" sy="-19.52770190" sz="0.00000000" ex="47.58851192" ey="13.78243267" ez="0.00000000" id="9" />
+        <Arc cx="33.39526442" cy="13.82619367" cz="0.00000000" ax="0.00000000" ay="0.00000000" az="1.00000000" col="0" sx="47.58851192" sy="13.78243267" sz="0.00000000" ex="34.05743107" ey="28.00405405" ez="0.00000000" id="10" />
+    </Sketch>
+    <Sketch title="Sketch" title_from_id="1" id="2">
+        <Line col="0" sx="-18.80000000" sy="17.30000000" sz="0.00000000" ex="-7.20000000" ey="17.30000000" ez="0.00000000" id="11" />
+        <Line col="0" sx="-7.20000000" sy="17.30000000" sz="0.00000000" ex="-7.20000000" ey="-1.20000000" ez="0.00000000" id="12" />
+        <Line col="0" sx="-7.20000000" sy="-1.20000000" sz="0.00000000" ex="-18.80000000" ey="-1.20000000" ez="0.00000000" id="13" />
+        <Line col="0" sx="-18.80000000" sy="-1.20000000" sz="0.00000000" ex="-18.80000000" ey="17.30000000" ez="0.00000000" id="14" />
+    </Sketch>
+</HeeksCAD_Document>
