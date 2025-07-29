@@ -75,22 +75,22 @@ void loop(){
   float pitch = 500.0 - (rate * 10.0);
   if(pitch > 2000)pitch = 2000.0;
   toneAC((unsigned int)pitch);
-//  LowPower.idle(SLEEP_120MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
-    delay(120);
+  LowPower.idle(SLEEP_120MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
+//    delay(120);
   toneAC(0);
-//  LowPower.idle(SLEEP_120MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
-    delay(120);
+  LowPower.idle(SLEEP_120MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
+//    delay(120);
   }
   else if(rate>30)
   {
     toneAC(300, 1);
-//    LowPower.idle(SLEEP_250MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
-    delay(250);
+    LowPower.idle(SLEEP_250MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
+//    delay(250);
   }
   else
   {
     toneAC(0);
-    //LowPower.idle(SLEEP_250MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
-    delay(250);
+    LowPower.idle(SLEEP_250MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
+    //delay(250);
   }
 }
