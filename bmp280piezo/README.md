@@ -2,7 +2,7 @@ Vario using BMP280
 
 Items needed
 
-- Barkleys Mints Ginger Tastefully Intense Mints Tins 50 g
+- Tin
 - Arduino Nano
 - BMP280 sensor
 - Piezo Buzzer ( passive not active )
