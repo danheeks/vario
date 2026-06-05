@@ -1,7 +1,7 @@
-#include <toneAC.h>
+#include <toneAC.h> // by Tim Eckel
 #include <Wire.h>
-#include <Adafruit_BMP280.h>
-#include <LowPower.h>
+#include <Adafruit_BMP280.h> // by Adafruit
+#include <LowPower.h> // by LowPowerLab
 
 Adafruit_BMP280 bmp; // use I2C interface
 Adafruit_Sensor *bmp_pressure = bmp.getPressureSensor();
