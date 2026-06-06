@@ -9,21 +9,21 @@ https://youtu.be/KGif6ZkmjKs?t=256
 
 You can buy a kit to make your own for £15, doesn't include postage
 
-It includes:
-
-Tin
-Arduino Nano
-BMP280 sensor
-Piezo Buzzer ( passive not active )
-9V PP3 battery
-battery connector and wires
-On/Off switch
-version 7 PCB ( currently waiting for an order, available around 20th June 2026 )
-Sticker for front of tin
-
-Or you can buy a working vario £25, doesnt' include postage.
-
-Email danheeks@gmail.com for enquiries and to check on stock
+It includes: <br />
+ <br />
+Tin <br />
+Arduino Nano <br />
+BMP280 sensor <br />
+Piezo Buzzer ( passive not active ) <br />
+9V PP3 battery <br />
+battery connector and wires <br />
+On/Off switch <br />
+version 7 PCB ( currently waiting for an order, available around 20th June 2026 ) <br />
+Sticker for front of tin <br />
+ <br />
+Or you can buy a working vario £25, doesnt' include postage. <br />
+ <br />
+Email danheeks@gmail.com for enquiries and to check on stock <br />
   
 ![Schematic Picture](./kitandvario.jpg)
 
