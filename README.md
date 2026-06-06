@@ -25,6 +25,6 @@ Or you can buy a working vario £25, doesnt' include postage.
 
 Email danheeks@gmail.com for enquiries and to check on stock
   
-![Schematic Picture](./kit and vario.jpg)
+![Schematic Picture](./kitandvario.jpg)
 
 
