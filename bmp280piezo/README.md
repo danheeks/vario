@@ -2,7 +2,7 @@ Vario using BMP280
 
 Items needed
 
-- Barkleys Mints Ginger Tastefully Intense Mints Tins 50 g
+- Tin
 - Arduino Nano
 - BMP280 sensor
 - Piezo Buzzer ( passive not active )
@@ -23,5 +23,8 @@ Wiring.
 I measured 10mA standby current, so should theoretically last 55 hours.
 One battery lasted me two summers of amateur paragliding, maybe 50hrs, including a flight of 202km in the UK! <br />
 https://youtu.be/KGif6ZkmjKs?t=256  
+
+Video of how to make this vario <br />
+https://youtu.be/9QVq33m_nv8
 
 ![Schematic Picture](./schematic.svg)
