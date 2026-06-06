@@ -21,7 +21,7 @@ On/Off switch <br />
 version 7 PCB ( currently waiting for an order, available around 20th June 2026 ) <br />
 Sticker for front of tin <br />
  <br />
-Or you can buy a working vario £25, doesnt' include postage. <br />
+Or you can buy a working vario £25, doesnt' include postage, ( I have 2 in stock 6th June 2026 ). <br />
  <br />
 Email danheeks@gmail.com for enquiries and to check on stock <br />
   
