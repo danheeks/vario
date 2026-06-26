@@ -7,7 +7,7 @@ Instructions here https://github.com/danheeks/vario/tree/master/bmp280piezo <br 
 One battery lasted me two summers of amateur paragliding, maybe 50hrs, including a flight of 202km in the UK! <br />
 https://youtu.be/KGif6ZkmjKs?t=256  
 
-You can buy a kit to make your own for £15, doesn't include postage
+You can buy a kit to make your own for £10, doesn't include postage
 
 It includes: <br />
  <br />
@@ -21,7 +21,7 @@ On/Off switch <br />
 version 7 PCB ( currently waiting for an order, available around 20th June 2026 ) <br />
 Sticker for front of tin <br />
  <br />
-Or you can buy a working vario £25, doesnt' include postage, ( I have 2 in stock 6th June 2026 ). <br />
+Or you can buy a working vario £20, doesnt' include postage, ( I have 2 in stock 6th June 2026 ). <br />
  <br />
 Email danheeks@gmail.com for enquiries and to check on stock <br />
   
