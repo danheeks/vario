@@ -73,7 +73,7 @@ void loop(){
   if(rate<-8)
   {
   float pitch = 500.0 - (rate * 10.0);
-  if(pitch > 2000)pitch = 2000.0;
+  if(pitch > 2500)pitch = 2500.0;
   toneAC((unsigned int)pitch);
   LowPower.idle(SLEEP_120MS, ADC_OFF, TIMER2_OFF, TIMER1_ON, TIMER0_OFF, SPI_OFF,USART0_OFF, TWI_OFF);
 //    delay(120);
